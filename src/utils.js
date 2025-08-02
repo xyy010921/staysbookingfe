@@ -2,16 +2,13 @@ const domain = "https://staybooking-614092140035.us-west1.run.app";
 
 export const login = (credential) => {
   const loginUrl = `${domain}/auth/login`;
-
-  const requestStatus = fetch(loginUrl, {
+  return fetch(loginUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(credential),
-  });
-
-  return requestStatus.then((response) => {
+  }).then((response) => {
     if (response.status >= 300) {
       throw Error("Fail to log in");
     }
